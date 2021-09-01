@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
+import { UserLogin } from '../model/UserLogin';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-logar',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogarComponent implements OnInit {
 
-  constructor() { }
+  usuarioLogin: UserLogin = new UserLogin
+  constructor(
+    private authService : AuthService,
+    private router: Router
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    window.scroll(0,0)
+  }
+  logar(){
+    this.authService.logar(this.usuarioLogin).subscribe((resp:UserLogin)=> {
+      this.usuarioLogin = resp
+
+      environment.token = this.usuarioLogin.token
+      environment.nome = this.usuarioLogin.nome
+      environment.email = this.usuarioLogin.email
+      environment.empresa = this.usuarioLogin.empresa
+      environment.id = this.usuarioLogin.id
+      environment.senha = this.usuarioLogin.senha
+   
+      this.router.navigate(['/inicio']) 
+    }, erro => {
+      if(erro.status == 500){
+        alert('senha ou email incorretos!')
+      }
+    })
   }
 
 }
