@@ -10,6 +10,14 @@ import { LogarComponent } from './logar/logar.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { FormsModule } from '@angular/forms';
 import { InicioComponent } from './inicio/inicio.component';
+import { Menu2Component } from './menu2/menu2.component';
+import { MeusPostsComponent } from './meus-posts/meus-posts.component';
+import { ConfiguracaoComponent } from './configuracao/configuracao.component';
+import { SobreComponent } from './sobre/sobre.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { TemaComponent } from './tema/tema.component';
+import { NovoTemaComponent } from './novo-tema/novo-tema.component';
+import { ModalPostComponent } from './modal-post/modal-post.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +26,14 @@ import { InicioComponent } from './inicio/inicio.component';
     RodapeComponent,
     LogarComponent,
     CadastrarComponent,
-    InicioComponent
+    InicioComponent,
+    Menu2Component,
+    MeusPostsComponent,
+    ConfiguracaoComponent,
+    SobreComponent,
+    TemaComponent,
+    NovoTemaComponent,
+    ModalPostComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +41,10 @@ import { InicioComponent } from './inicio/inicio.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: LocationStrategy,
+    useClass: HashLocationStrategy
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
