@@ -7,8 +7,8 @@ export class Postagem {
     public descricao: string 
     public titulo: string
     public midia: string
-    public quem_Faz: string
-    public like: number
+    public quemFaz: string
+    public curtir: number
 
 public usuario: Usuario
 public tema: Tema

@@ -14,17 +14,19 @@ export class AuthService {
     private http: HttpClient
   ) { }
 
-  logar(userlogin: UserLogin): Observable<UserLogin> {
-    return this.http.post<UserLogin>(
-      'https://edegracanubia.herokuapp.com/usuario/logar', userlogin
+  cadastrar(usuario: Usuario): Observable<Usuario>{
+    return this.http.post <Usuario>(
+      'https://edegraca.herokuapp.com/usuarios/cadastrar', usuario
     )
   }
 
-  cadastrar(usuario: Usuario): Observable<Usuario>{
-    return this.http.post <Usuario>(
-      'https://edegracanubia.herokuapp.com/usuario/cadastrar', usuario
+  logar(userlogin: UserLogin): Observable<UserLogin> {
+    return this.http.post<UserLogin>(
+      'https://edegraca.herokuapp.com/usuarios/logar', userlogin
     )
   }
+
+  
 logado(){
   let ok = false
   
