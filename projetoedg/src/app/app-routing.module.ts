@@ -1,13 +1,18 @@
+import { TemaDeleteComponent } from './delete/tema-delete/tema-delete.component';
+import { TemaEditComponent } from './edit/tema-edit/tema-edit.component';
+import { TemaComponent } from './tema/tema.component';
+import { SobreComponent } from './sobre/sobre.component';
+import { MeusPostsComponent } from './meus-posts/meus-posts.component';
+import { InicioComponent } from './inicio/inicio.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { LogarComponent } from './logar/logar.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { InicioComponent } from './inicio/inicio.component';
-import { MeusPostsComponent } from './meus-posts/meus-posts.component';
 import { ConfiguracaoComponent } from './configuracao/configuracao.component';
-import { SobreComponent } from './sobre/sobre.component';
-import { TemaComponent } from './tema/tema.component';
 import { NovoTemaComponent } from './novo-tema/novo-tema.component';
+import { PostEditComponent } from './edit/post-edit/post-edit.component';
+import { PostDeleteComponent } from './delete/post-delete/post-delete.component';
+import { UserEditComponent } from './edit/user-edit/user-edit.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -18,8 +23,12 @@ const routes: Routes = [
   {path: 'configuracao', component: ConfiguracaoComponent},
   {path: 'sobre', component: SobreComponent},
   {path: 'tema', component: TemaComponent},
-  {path: 'novo-tema', component: NovoTemaComponent}
-
+  {path: 'novo-tema', component: NovoTemaComponent},
+  {path: 'tema-edit/:id', component: TemaEditComponent},
+  {path: 'tema-delete/:id', component: TemaDeleteComponent},
+  {path: 'post-edit/:id', component: PostEditComponent},
+  {path: 'post-delete/:id', component: PostDeleteComponent},
+  {path: 'user-edit/:id', component: UserEditComponent}
 ];
 
 @NgModule({

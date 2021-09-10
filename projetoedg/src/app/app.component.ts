@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { environment } from './../environments/environment.prod';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment.prod';
+import { Component } from '@angular/core';
 import { AuthService } from './service/auth.service';
 
 @Component({
@@ -15,8 +15,9 @@ export class AppComponent {
     public auth: AuthService,
     private router: Router
   ){}
+
   ngOnInit(){
-    if(environment.token == ''){
+    if (environment.token == ''){
       this.router.navigate(['/login'])
     }
   }

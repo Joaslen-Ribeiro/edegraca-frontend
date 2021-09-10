@@ -1,8 +1,8 @@
+import { environment } from './../../environments/environment.prod';
+import { UsuarioLogin } from './../model/UsuarioLogin';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment.prod';
-import { UserLogin } from '../model/UserLogin';
 import { Usuario } from '../model/Usuario';
 
 @Injectable({
@@ -14,34 +14,41 @@ export class AuthService {
     private http: HttpClient
   ) { }
 
+  getByIdUser(id: number): Observable<Usuario>{
+    return this.http.get<Usuario>(`https://edegraca.herokuapp.com/usuarios/${id}`)
+  }
+
+  logar(usuarioLogin: UsuarioLogin):Observable<UsuarioLogin>{
+    return this.http.post<UsuarioLogin>(
+      'https://edegraca.herokuapp.com/usuarios/logar', usuarioLogin
+    )
+  }
+
   cadastrar(usuario: Usuario): Observable<Usuario>{
-    return this.http.post <Usuario>(
+    return this.http.post<Usuario>(
       'https://edegraca.herokuapp.com/usuarios/cadastrar', usuario
     )
   }
 
-  logar(userlogin: UserLogin): Observable<UserLogin> {
-    return this.http.post<UserLogin>(
-      'https://edegraca.herokuapp.com/usuarios/logar', userlogin
-    )
+  logado(){
+    let ok = false
+
+    if (environment.token != ''){
+      ok = true
+    }
+
+    return ok
   }
 
-  
-logado(){
-  let ok = false
-  
-  if(environment.token != ''){
-    ok = true
+  deslogado(){
+    let ok = false
+
+    if (environment.token == ''){
+      ok = true
+    }
+
+    return ok
   }
 
-  return ok
-}
-deslogado(){
-  let ok = false
-  if(environment.token == ''){
-    ok = true
-  }
-  return ok
-}
 
 }
